@@ -13,33 +13,35 @@ module.exports = {
 			'@server': path.resolve(__dirname, 'src/server'),
 		},
 	},
-	rules: [
-		{
-			test: /\.ts(x?)$/,
-			exclude: /node_modules/,
-			use: [
-				{
-					loader: 'babel-loader',
-				},
-				{
-					loader: 'ts-loader',
-					options: {
-						configFile: path.resolve(
-							__dirname,
-							dev ? 'tsconfig.json' : 'tsconfig.build.json'
-						),
+	module: {
+		rules: [
+			{
+				test: /\.ts(x?)$/,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: 'babel-loader',
 					},
-				},
-			],
-		},
-		{
-			test: /\.scss$/,
-			use: [
-				{
-					loader: 'postcss-loader',
-				},
-				'sass-loader',
-			],
-		},
-	],
+					{
+						loader: 'ts-loader',
+						options: {
+							configFile: path.resolve(
+								__dirname,
+								dev ? 'tsconfig.json' : 'tsconfig.build.json'
+							),
+						},
+					},
+				],
+			},
+			{
+				test: /\.scss$/,
+				use: [
+					{
+						loader: 'postcss-loader',
+					},
+					'sass-loader',
+				],
+			},
+		],
+	},
 };
