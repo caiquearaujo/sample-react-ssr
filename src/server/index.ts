@@ -6,8 +6,8 @@ import { IFastifyInstance } from './types';
 
 const routes = [
 	async (app: IFastifyInstance) => {
-		app.get('/', (request, reply) => {
-			reply.type('text/html').send(render());
+		app.get('*', (request, reply) => {
+			reply.type('text/html').send(render(request.url));
 		});
 	},
 ];
