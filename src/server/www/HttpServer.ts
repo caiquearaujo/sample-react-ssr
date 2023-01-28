@@ -1,4 +1,4 @@
-import { IApiServer, IHttpServer } from '@server/types/classes';
+import { IApiServer, IHttpServer } from '@server/types';
 
 export default class HttpServer implements IHttpServer {
 	api: IApiServer;

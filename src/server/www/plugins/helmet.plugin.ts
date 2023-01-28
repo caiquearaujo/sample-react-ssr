@@ -1,8 +1,7 @@
-import { FastifyInstance } from 'fastify';
 import fastifyHelmet from '@fastify/helmet';
-import { TFnApplyToFastify } from '@server/types/types';
+import { IFastifyInstance, TFnApplyToFastify } from '@server/types';
 
-const callable: TFnApplyToFastify = async (app: FastifyInstance) => {
+const callable: TFnApplyToFastify = async (app: IFastifyInstance) => {
 	await app.register(fastifyHelmet);
 };
 

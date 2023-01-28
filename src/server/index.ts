@@ -1,12 +1,13 @@
-import { FastifyInstance } from 'fastify';
 import plugins from '@server/www/plugins';
 import FastifyApplierGroup from '@server/www/FastifyApplierGroup';
 import ApiServer from './www/ApiServer';
+import render from './render';
+import { IFastifyInstance } from './types';
 
 const routes = [
-	async (app: FastifyInstance) => {
+	async (app: IFastifyInstance) => {
 		app.get('/', (request, reply) => {
-			reply.type('text/html').send('<h1>Hello World!</h1>');
+			reply.type('text/html').send(render());
 		});
 	},
 ];

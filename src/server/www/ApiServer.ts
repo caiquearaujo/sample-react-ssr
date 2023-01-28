@@ -1,16 +1,21 @@
-import fastify, { FastifyInstance } from 'fastify';
+import fastify from 'fastify';
 import path from 'path';
 
-import { IApiServer, IHttpServer } from '@server/types/classes';
-import { IApplyToFastify } from '@server/types/interfaces';
-import { TAvailableEnvs, TEnvVariables } from '@server/types/types';
+import {
+	IApiServer,
+	IFastifyInstance,
+	IHttpServer,
+	IApplyToFastify,
+	TAvailableEnvs,
+	TEnvVariables,
+} from '@server/types';
 import { NODE_ENV, HOST, NAME, PORT } from '@server/env/config';
 import Logger from '@server/utils/Logger';
 
 import HttpServer from './HttpServer';
 
 export default class ApiServer implements IApiServer {
-	app: FastifyInstance;
+	app: IFastifyInstance;
 
 	routes: IApplyToFastify;
 

@@ -1,6 +1,9 @@
-import { IApplyToFastify } from '@server/types/interfaces';
-import { TEnvVariables, TFnApplyToFastify } from '@server/types/types';
-import { FastifyInstance } from 'fastify';
+import {
+	IApplyToFastify,
+	IFastifyInstance,
+	TEnvVariables,
+	TFnApplyToFastify,
+} from '@server/types';
 
 export default class FastifyApplierGroup implements IApplyToFastify {
 	protected callables: Array<TFnApplyToFastify> = [];
@@ -9,7 +12,7 @@ export default class FastifyApplierGroup implements IApplyToFastify {
 		this.callables = args;
 	}
 
-	async apply(app: FastifyInstance, env: TEnvVariables): Promise<void> {
+	async apply(app: IFastifyInstance, env: TEnvVariables): Promise<void> {
 		await Promise.all(
 			this.callables.map(async callable => {
 				await callable(app, env);
