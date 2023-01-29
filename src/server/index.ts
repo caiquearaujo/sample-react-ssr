@@ -12,6 +12,8 @@ const apiRoutes = [
 		app.get('*', async (request, reply) => {
 			const store = createStore();
 
+			console.log(request.url);
+
 			const promises = matchRoutes(routes, request.url)?.map(
 				({ route }) => {
 					if (route.preload) {
@@ -26,6 +28,7 @@ const apiRoutes = [
 				await Promise.all(promises);
 			}
 
+			console.log('sending html');
 			reply.type('text/html').send(render(request.url, store));
 		});
 	},

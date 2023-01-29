@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { getUsers, showUsers } from '@global/store/users';
-import { PreloadFn, StoreDispatch } from '@global/types';
+import { PreloadFn } from '@global/types';
 
 const preloadUsersListPage: PreloadFn = store =>
 	store.dispatch(getUsers());
@@ -10,11 +10,6 @@ export { preloadUsersListPage };
 
 export default function UsersListPage() {
 	const users = useSelector(showUsers);
-	const dispatch = useDispatch<StoreDispatch>();
-
-	useEffect(() => {
-		dispatch(getUsers());
-	}, []);
 
 	return (
 		<React.Fragment>
