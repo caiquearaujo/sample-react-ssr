@@ -23,6 +23,7 @@ export default (url: string, store: Store) => {
 			<head>
 				<meta charset="utf-8" />
 				<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 				<title>React SSR</title>
 			</head>
 			<body>

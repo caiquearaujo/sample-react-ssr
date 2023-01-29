@@ -8,7 +8,7 @@ export default (request: FastifyRequest) => {
 	const axios = AxiosFactory.create({
 		baseURL: 'http://react-ssr-api.herokuapp.com',
 		headers: {
-			cokkie: request.headers.cookie || '',
+			cookie: request.headers.cookie || '',
 		},
 	});
 

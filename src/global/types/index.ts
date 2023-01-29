@@ -16,6 +16,8 @@ export interface UserObject {
 	name: string;
 }
 
+export type AuthState = APIResponse<UserObject>;
+
 export type UsersState = APIResponse<UserObject[]>;
 
 export type PreloadFn = (store: Store) => Promise<any>;
@@ -26,6 +28,7 @@ export type PreloadedRouteObject = RouteObject & {
 
 export type RootState = CombinedState<{
 	users: UsersState;
+	auth: AuthState;
 }>;
 
 export type Store = ToolkitStore<

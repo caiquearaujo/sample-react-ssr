@@ -1,5 +1,6 @@
 import { matchRoutes } from 'react-router-dom';
 import routes from '@client/Routes';
+import { preloadApp } from '@client/App';
 import plugins from '@server/www/plugins';
 import FastifyApplierGroup from '@server/www/FastifyApplierGroup';
 import ApiServer from './www/ApiServer';
@@ -11,6 +12,9 @@ const apiRoutes = [
 	async (app: IFastifyInstance) => {
 		app.get('*', async (request, reply) => {
 			const store = createStore(request);
+
+			await preloadApp(store);
+
 			const promises = matchRoutes(routes, request.url)?.map(
 				({ route }) => {
 					if (route.preload) {
