@@ -87,6 +87,7 @@
 		"@fastify/compress": "^6.2.0",
 		"@fastify/cors": "^8.2.0",
 		"@fastify/helmet": "^10.1.0",
+		"@fastify/http-proxy": "^8.4.0",
 		"@fastify/static": "^6.7.0",
 		"@reduxjs/toolkit": "^1.9.2",
 		"axios": "^1.2.6",
