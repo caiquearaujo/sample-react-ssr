@@ -6,6 +6,7 @@ import {
 	ThunkMiddleware,
 } from '@reduxjs/toolkit';
 import { ToolkitStore } from '@reduxjs/toolkit/dist/configureStore';
+import { RouteObject } from 'react-router-dom';
 
 export interface UserObject {
 	id: number;
@@ -15,6 +16,12 @@ export interface UserObject {
 export interface UsersState {
 	data: UserObject[];
 }
+
+export type PreloadFn = (store: Store) => Promise<void>;
+
+export type PreloadedRouteObject = RouteObject & {
+	preload?: PreloadFn;
+};
 
 export type RootState = CombinedState<{
 	users: UsersState;
