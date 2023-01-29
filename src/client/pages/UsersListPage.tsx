@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getUsers, showUsers } from '@global/store/users';
 import { PreloadFn, StoreDispatch } from '@global/types';
 
-const preload: PreloadFn = store => store.dispatch(getUsers());
+const preloadUsersListPage: PreloadFn = store =>
+	store.dispatch(getUsers());
 
-export { preload };
+export { preloadUsersListPage };
 
-export default function UserList() {
+export default function UsersListPage() {
 	const users = useSelector(showUsers);
 	const dispatch = useDispatch<StoreDispatch>();
 

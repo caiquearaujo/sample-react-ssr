@@ -1,19 +1,19 @@
 import 'react';
 import { PreloadedRouteObject } from '@global/types';
-import Home from './pages/Home';
-import UserList, {
-	preload as preloadUserList,
-} from './components/UserList';
+import HomePage from './pages/HomePage';
+import UsersListPage, {
+	preloadUsersListPage,
+} from './pages/UsersListPage';
 
 const routes: PreloadedRouteObject[] = [
 	{
 		path: '/',
-		element: <Home />,
+		element: <HomePage />,
 	},
 	{
 		path: '/users',
-		element: <UserList />,
-		preload: preloadUserList,
+		element: <UsersListPage />,
+		preload: preloadUsersListPage,
 	},
 ];
 
