@@ -15,9 +15,7 @@ export default function UsersListPage() {
 	const [isLoading, setLoading] = useState(false);
 
 	useEffect(() => {
-		if (!users.data) {
-			dispatch(getUsers());
-		}
+		dispatch(getUsers());
 	}, []);
 
 	useEffect(() => {

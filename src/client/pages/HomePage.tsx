@@ -1,5 +1,10 @@
 import 'react';
 
 export default function Home() {
-	return <h1>This is the homepage!</h1>;
+	return (
+		<section className="center-align" style={{ marginTop: 200 }}>
+			<h3>Welcome</h3>
+			<p>Check out these awesome features</p>
+		</section>
+	);
 }
