@@ -1,13 +1,13 @@
 import 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
-import About from './pages/About';
+import UserList from './components/UserList';
 
 export default function App() {
 	return (
 		<Routes>
 			<Route path="/" element={<Home />} />
-			<Route path="/about" element={<About />} />
+			<Route path="/users" element={<UserList />} />
 		</Routes>
 	);
 }

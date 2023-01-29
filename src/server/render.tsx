@@ -2,12 +2,16 @@ import 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from '@client/App';
+import { Provider } from 'react-redux';
+import { Store } from '@global/types';
 
-export default (url: string) => {
+export default (url: string, store: Store) => {
 	const content = renderToString(
-		<StaticRouter location={url}>
-			<App />
-		</StaticRouter>
+		<Provider store={store}>
+			<StaticRouter location={url}>
+				<App />
+			</StaticRouter>
+		</Provider>
 	);
 
 	return `

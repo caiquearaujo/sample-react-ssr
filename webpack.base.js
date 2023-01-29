@@ -5,10 +5,10 @@ const dev = process.env.NODE_ENV !== 'production';
 module.exports = {
 	mode: dev ? 'development' : 'production',
 	resolve: {
-		extensions: ['.ts', '.tsx'],
+		extensions: ['.ts', '.tsx', '.js'],
 		modules: ['src', 'node_modules'],
 		alias: {
-			'@root': path.resolve(__dirname),
+			'@global': path.resolve(__dirname, 'src/global'),
 			'@client': path.resolve(__dirname, 'src/client'),
 			'@server': path.resolve(__dirname, 'src/server'),
 		},

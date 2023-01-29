@@ -19,8 +19,8 @@
 		"rootDir": ".",
 		"outDir": "./build",
 		"paths": {
-			"@root/*": [
-				"src/*",
+			"@global/*": [
+				"src/global/*",
 			],
 			"@server/*": [
 				"src/server/*",

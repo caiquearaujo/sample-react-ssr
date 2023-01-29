@@ -3,11 +3,13 @@ import FastifyApplierGroup from '@server/www/FastifyApplierGroup';
 import ApiServer from './www/ApiServer';
 import render from './render';
 import { IFastifyInstance } from './types';
+import createStore from './store';
 
 const routes = [
 	async (app: IFastifyInstance) => {
 		app.get('*', (request, reply) => {
-			reply.type('text/html').send(render(request.url));
+			const store = createStore();
+			reply.type('text/html').send(render(request.url, store));
 		});
 	},
 ];
