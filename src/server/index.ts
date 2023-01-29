@@ -10,10 +10,7 @@ import createStore from './store';
 const apiRoutes = [
 	async (app: IFastifyInstance) => {
 		app.get('*', async (request, reply) => {
-			const store = createStore();
-
-			console.log(request.url);
-
+			const store = createStore(request);
 			const promises = matchRoutes(routes, request.url)?.map(
 				({ route }) => {
 					if (route.preload) {
@@ -28,7 +25,6 @@ const apiRoutes = [
 				await Promise.all(promises);
 			}
 
-			console.log('sending html');
 			reply.type('text/html').send(render(request.url, store));
 		});
 	},

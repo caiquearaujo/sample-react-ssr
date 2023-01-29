@@ -1,17 +1,29 @@
-import axios from 'axios';
-import { UserObject } from '@global/types';
+import { APIError } from './types';
 
-const getAllUsers = async (): Promise<UserObject[]> => {
-	try {
-		const { data } = await axios.get(
-			'https://jsonplaceholder.typicode.com/users'
-		);
-		return data;
-	} catch (error) {
-		console.error(error);
-		return [];
+export default function getPayloadException(e: any): APIError {
+	if (typeof e === 'object' && e) {
+		return {
+			message: 'Invalid request error.',
+			code: 500,
+		};
 	}
-};
 
-// eslint-disable-next-line import/prefer-default-export
-export { getAllUsers };
+	const typedError = e as APIError;
+
+	if (
+		Object.hasOwn(e, 'message') &&
+		typeof typedError.message === 'string' &&
+		Object.hasOwn(e, 'code') &&
+		typeof typedError.code === 'number'
+	) {
+		return {
+			message: typedError.message,
+			code: typedError.code,
+		};
+	}
+
+	return {
+		message: 'Invalid request error.',
+		code: 500,
+	};
+}
