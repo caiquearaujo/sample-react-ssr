@@ -35,8 +35,9 @@ const adminsSlice = createSlice({
 			state.data = action.payload;
 			state.status = APIStatus.FULFILLED;
 		});
-		builder.addCase(getAdmins.rejected, state => {
+		builder.addCase(getAdmins.rejected, (state, action) => {
 			state.status = APIStatus.REJECTED;
+			state.error = action.payload;
 		});
 	},
 });

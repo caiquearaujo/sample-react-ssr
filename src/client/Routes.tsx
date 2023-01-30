@@ -5,6 +5,9 @@ import UsersListPage, {
 	preloadUsersListPage,
 } from './pages/UsersListPage';
 import NotFoundPage from './pages/NotFoundPage';
+import AdminsListPage, {
+	preloadAdminsListPage,
+} from './pages/AdminsListPage';
 
 const routes: PreloadedRouteObject[] = [
 	{
@@ -15,6 +18,11 @@ const routes: PreloadedRouteObject[] = [
 		path: '/users',
 		element: <UsersListPage />,
 		preload: preloadUsersListPage,
+	},
+	{
+		path: '/admins',
+		element: <AdminsListPage />,
+		preload: preloadAdminsListPage,
 	},
 	{
 		path: '*',

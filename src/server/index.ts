@@ -13,26 +13,27 @@ const apiRoutes = [
 		app.get('*', async (request, reply) => {
 			const store = createStore(request);
 
-			await preloadApp(store);
-
-			const promises = matchRoutes(routes, request.url)?.map(
-				({ route }) => {
+			const promises =
+				matchRoutes(routes, request.url)?.map(({ route }) => {
 					if (route.preload) {
 						return route.preload(store);
 					}
 
 					return null;
-				}
-			);
+				}) || [];
 
-			if (promises) {
-				await Promise.all(promises);
-			}
+			promises.unshift(preloadApp(store));
+
+			await Promise.all(promises);
 
 			const context: Record<string, any> = {};
 			const html = render(request.url, store, context);
 
-			reply
+			if (context.redirectTo) {
+				return reply.status(301).redirect(context.redirectTo);
+			}
+
+			return reply
 				.type('text/html')
 				.status(context.notFound ? 404 : 200)
 				.send(html);

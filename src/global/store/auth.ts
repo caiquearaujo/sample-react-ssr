@@ -35,8 +35,9 @@ const authSlice = createSlice({
 			state.data = action.payload;
 			state.status = APIStatus.FULFILLED;
 		});
-		builder.addCase(getCurrentUser.rejected, state => {
+		builder.addCase(getCurrentUser.rejected, (state, action) => {
 			state.status = APIStatus.REJECTED;
+			state.error = action.payload;
 		});
 	},
 });

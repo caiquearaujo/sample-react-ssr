@@ -35,8 +35,9 @@ const usersSlice = createSlice({
 			state.data = action.payload;
 			state.status = APIStatus.FULFILLED;
 		});
-		builder.addCase(getUsers.rejected, state => {
+		builder.addCase(getUsers.rejected, (state, action) => {
 			state.status = APIStatus.REJECTED;
+			state.error = action.payload;
 		});
 	},
 });
