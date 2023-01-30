@@ -1,6 +1,7 @@
 import 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
+import { Helmet } from 'react-helmet';
 import serialize from 'serialize-javascript';
 import App from '@client/App';
 import { Provider } from 'react-redux';
@@ -23,17 +24,17 @@ export default (
 	);
 
 	const state = serialize(store.getState(), { isJSON: true });
+	const helmet = Helmet.renderStatic();
 
 	return `
 		<!DOCTYPE html>
-		<html lang="en">
+		<html lang="en" ${helmet.htmlAttributes.toString()}>
 			<head>
-				<meta charset="utf-8" />
-				<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
-				<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-				<title>React SSR</title>
+				${helmet.title.toString()}
+            ${helmet.meta.toString()}
+            ${helmet.link.toString()}
 			</head>
-			<body>
+			<body ${helmet.bodyAttributes.toString()}>
 				<div id="root">${content}</div>
 				<script>window.__PRELOADED_STATE__=${state};</script>
 				<script src="/assets/js/bundle.js" crossorigin="anonymous"></script>

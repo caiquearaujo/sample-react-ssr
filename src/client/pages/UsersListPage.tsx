@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { getUsers, showUsers } from '@global/store/users';
 import { PreloadFn, StoreDispatch } from '@global/types';
 import { APIStatus } from '@global/api/types';
@@ -26,6 +27,13 @@ export default function UsersListPage() {
 		}
 	}, [users.status]);
 
+	const head = () => (
+		<Helmet>
+			<title>{`${users.data?.length ?? 0} users loaded`}</title>
+			<meta property="og:title" content="Users List" />
+		</Helmet>
+	);
+
 	const renderUsers = () => {
 		if (isLoading) {
 			return <div>Loading...</div>;
@@ -42,6 +50,7 @@ export default function UsersListPage() {
 
 	return (
 		<React.Fragment>
+			{head()}
 			<h2>All users available</h2>
 			{renderUsers()}
 		</React.Fragment>
