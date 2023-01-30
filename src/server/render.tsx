@@ -5,12 +5,19 @@ import serialize from 'serialize-javascript';
 import App from '@client/App';
 import { Provider } from 'react-redux';
 import { Store } from '@global/types';
+import { StaticProvider } from './contexts/StaticContext';
 
-export default (url: string, store: Store) => {
+export default (
+	url: string,
+	store: Store,
+	context: Record<string, any>
+) => {
 	const content = renderToString(
 		<Provider store={store}>
 			<StaticRouter location={url}>
-				<App />
+				<StaticProvider value={context}>
+					<App />
+				</StaticProvider>
 			</StaticRouter>
 		</Provider>
 	);

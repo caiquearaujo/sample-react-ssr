@@ -29,7 +29,13 @@ const apiRoutes = [
 				await Promise.all(promises);
 			}
 
-			reply.type('text/html').send(render(request.url, store));
+			const context: Record<string, any> = {};
+			const html = render(request.url, store, context);
+
+			reply
+				.type('text/html')
+				.status(context.notFound ? 404 : 200)
+				.send(html);
 		});
 	},
 ];
